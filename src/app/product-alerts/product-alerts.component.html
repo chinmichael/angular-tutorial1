@@ -1,0 +1,10 @@
+<p *ngIf="product.price > 700">
+  <button (click)="notify.emit()">Notify Me</button>
+</p>
+
+<!--
+  받아돈 product는 ts에서 Input으로 설정한 프로퍼티를 통해 들어온 값
+  가격이 700 이상인 케이스만 alert설정을 해줄 notify버튼 생성 컴포넌트임 (부모는 리스트)
+
+  마찬가지로 notify.emit()을 통해 외부로 바인딩 된 클릭 이벤트를 보냄
+-->

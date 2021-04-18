@@ -1,8 +1,68 @@
 <h2>Products</h2>
 
+<div *ngFor="let product of products">
+  <h3>
+    <a [title]="product.name + 'details'">
+      {{product.name}}
+    </a>
+  </h3>
+  <p *ngIf="product.description">
+    Description: {{product.description}}
+  </p>
+
+  <button (click)="share()">
+    Share
+  </button>
+
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
+</div>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 -->
+
+<!--
+Angular 템플릿 문법은 HTML과 JS를 확장한 것
+
+*ngFor 반복처리(for문)를 위함 위 상품리스트 div의 반복처리를 위해 div에 세팅
+
+*로 시작하는 것은 구조 디렉티브 : element를 dom에 추가/제거/조작 처리리
+
+{{}} : 문자열 삽입 : 프로퍼티 값을 텍스트로 출력
+
+[] : property 바인딩문법 > 프로퍼티 값을 템플릿 표현식에 쓸 수 있게 해줌
+   > a태그 title(property)은 hover시 태그 띄움 거기에 []를 붙여 product.name 값을 쓸 수 있음
+
+*ngIf : 위가 딱봐도 for반복문이면 이건 if조건문 위에서 decription이 있는 경우만 p태그 생성성
+
+share()은 TS에서 정의된 걸 같고 온거라 치고
+(click)에서 () : []가 element property에 바인딩이라면 event에 바인딩하기 위함
+-->
+
+<!--
+component : 사용자 I/F나 UI를 재사용하기 위해 정의한 단위
+
+component 구성요소 3 (지금처럼 한 디렉터리 구성 > 컴포넌트 생성시 3개 문서 자동 생성)
+component 클래스 : 로직 > 데이터 처리, 메서드 정의 등 (딱봐도 js나 ts)
+
+HTML 템플릿 : UI 정의 말그대로로 HTML 레이아웃, 엘리멘트 구성 (그냥 야예 html이라고...)
+
+컴포넌트 스타일 : 컴포넌트 모습 지정(딱봐도 css)
+
+현재 component 구성
+app-root : application cell : 처음 로드되는 컴포넌트이자 최고조상 컴포넌트 / 화면 생각
+
+app-top-bar : 옆 화면의 상단 네비게이션 쪽
+app-product-list : 방금 만들던거
+-->
+
+<!--
+
+<app-product-alerts    : 새로 만든 컴포넌트를 자식으로 추가하기 위해 셀렉터 추가
+  [product]="product"> : [](property binding)으로 현재 상품을 alert쪽 입력프로퍼티로 넣음
+  </app-product-alerts>
+
+  -->
