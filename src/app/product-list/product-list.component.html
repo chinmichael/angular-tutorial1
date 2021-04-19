@@ -1,11 +1,31 @@
 <h2>Products</h2>
 
+<!--
 <div *ngFor="let product of products">
   <h3>
     <a [title]="product.name + 'details'">
       {{product.name}}
     </a>
   </h3>
+
+  아래 수정 사항
+  각 product에 index 할당을 위해 반복문 수정
+  
+  a엘리먼트 routerLink 다랙티브를 바인딩 후 사용
+  routerLink 디랙티브 사용시 앵커 앨리먼트의 동작을 가로채서 라우터가 제어하게 됨
+  아래의 경우 /product 접두사에 id프로퍼티가 붙는 형식으로 처리 (주소창을 참조)
+-->
+
+<div *ngFor="let product of products; index as productId">
+  <h3>
+    <a
+      [title]="product.name + 'details'"
+      [routerLink]="['/products',productId]"
+    >
+      {{product.name}}
+    </a>
+  </h3>
+
   <p *ngIf="product.description">
     Description: {{product.description}}
   </p>
